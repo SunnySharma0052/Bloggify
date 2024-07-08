@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <h1>Edit Your Profile</h1>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                <td>
+                    <p>
+                        <img src="{{ user.image.url }}" style="height: 250px;">
+                    </p>
+                    <p>
+                        <input type="file" name="profilepic" class="form-control form-control-sm">
+                    </p>
+                </td>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <td>First Name: </td>
+                            <td><input type="text" name="firstname" value="{{ user.first_name }}"
+                                    class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name: </td>
+                            <td><input type="text" name="lastname" value="{{ user.last_name }}"
+                                    class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td>Email Id: </td>
+                            <td>
+                                <input type="text" name="emailid" value="{{ user.email_id }}"
+                                    class=" form-control-sm form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input class="btn btn-sm btn-primary col-lg-12" type="submit" value="Update">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </table>
+        </form>
+    </div>
+</div>
+{% endblock %}

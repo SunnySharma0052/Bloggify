@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        {% if is_any_post %}
+            <h1>Your Posts</h1>
+            <div class="justify-content-end">
+                <a class="btn btn-primary" href="{% url 'create-post' %}">Create New Post</a>
+            </div>
+            <hr>
+            {% for post in posts %}
+                <div class="rounded mx-auto border p-4 m-4">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.description }}</p>
+                    <p>{{ post.created_at }}</p>
+                    <a class="btn btn-primary" href="{% url 'edit-post' %}?id={{ post.id }}">Edit</a>
+                    <a class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" href="{% url 'delete-post' %}?id={{ post.id }}">Delete</a>
+                </div>
+            {% endfor %}
+        {% else %}
+        <h1>No Post created yet</h1>
+        <a class="btn btn-primary" href="{% url 'create-post' %}">Create New Post Now</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

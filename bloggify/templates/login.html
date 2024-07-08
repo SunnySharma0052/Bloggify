@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="p-4 m-4">
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <h1>Login Here</h1>
+            <hr>
+            {% if error_message %}
+                <div class="alert alert-danger">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="emailid" class="form-label">Email Id</label>
+                    <input type="text" class="form-control" id="emailid" name="emailid">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary col-12">Login</button>
+                <a href="{% url 'reset-password' %}">Forgot Password</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

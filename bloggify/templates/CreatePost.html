@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create New Post
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <h1>Create New Post Here</h1>
+        <hr>
+        {% if error_message %}
+            <div class="alert alert-danger">
+                {{ error_message }}
+            </div>
+        {% endif %}    
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary col-12">Create</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

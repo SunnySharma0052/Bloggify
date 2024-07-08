@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Post Details
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <div class="rounded mx-auto border p-4 m-4">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>{{ post.created_at }}</p>
+            <p><b>By: </b>{{ post.author.first_name }} {{ post.author.last_name }}</p>
+            {% if post.likes.count > 1 %}
+                <p>{{ post.likes.count }} Likes</p>
+            {% else %}
+                <p>{{ post.likes.count }} Like</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

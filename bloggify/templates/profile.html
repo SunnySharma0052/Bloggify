@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <h1>Your Profile</h1>
+        <hr>
+        <table class="table">
+            <td>
+                <img src="{{ user.image.url }}" style="height: 250px;">
+            </td>
+            <td>
+                <table class="table">
+                    <tr>
+                        <td>First Name: </td>
+                        <td>{{ user.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name: </td>
+                        <td>{{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email Id: </td>
+                        <td>{{ user.email_id }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a class="btn btn-primary" href="{% url 'editprofile' %}">Edit</a></td>
+                    </tr>
+                </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Post Details
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <div class="rounded mx-auto border p-4 m-4">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>{{ post.created_at }}</p>
+            <p><b>By: </b>{{ post.author.first_name }} {{ post.author.last_name }}</p>
+            {% if post.likes.count > 1 %}
+                    <a href="{% url 'like-post' %}?id={{ post.id }}">{{ post.likes.count }} Likes</a>
+            {% else %}
+                    <a href="{% url 'like-post' %}?id={{ post.id }}">{{ post.likes.count }} Like</a>
+            {% endif %}
+            <p>{{ comments.count }} Comments</p>
+            {% for comment in comments %}
+                <p>{{ comment.content }} Commented By: {{ comment.user.first_name }} <img src="{{ comment.user.image.url }}" class="rounded" style="height: 25px;"/></p> 
+            {% endfor %}
+            <form method="post" action="{% url 'add-comment' %}">
+                {% csrf_token %}
+                <input type="hidden" name="post-id" value="{{ post.id }}"/>
+                Comment: <input type="text" name="comment"/>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
